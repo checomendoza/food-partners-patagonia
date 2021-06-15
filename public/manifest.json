@@ -1,29 +1,29 @@
 {
-    "theme_color": "#f69435",
-    "background_color": "#f69435",
+    "theme_color": "#3B5C7F",
+    "background_color": "#3B5C7F",
     "display": "standalone",
     "scope": "/",
     "start_url": "/",
-    "name": "Test App",
-    "short_name": "Bytem App",
+    "name": "Food Partners Patagonia",
+    "short_name": "FPP",
     "icons": [
         {
-            "src": "/icons/icon-192x192.png",
+            "src": "/icon-192x192.png",
             "sizes": "192x192",
             "type": "image/png"
         },
         {
-            "src": "/icons/icon-256x256.png",
+            "src": "/icon-256x256.png",
             "sizes": "256x256",
             "type": "image/png"
         },
         {
-            "src": "/icons/icon-384x384.png",
+            "src": "/icon-384x384.png",
             "sizes": "384x384",
             "type": "image/png"
         },
         {
-            "src": "/icons/icon-512x512.png",
+            "src": "/icon-512x512.png",
             "sizes": "512x512",
             "type": "image/png"
         }
