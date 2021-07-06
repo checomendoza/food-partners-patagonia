@@ -12,7 +12,7 @@ export default function ListHallazgos() {
 const [incidencias, setIncidencias]=useState(null)
 const [isLoading, setisLoading]=useState(true)
 useEffect(()=>{
-Axios.post('http://api-foodpartnerspatagonia.herokuapp.com/api/getIncidencias').then((resp)=>{
+Axios.post('https://api-foodpartnerspatagonia.herokuapp.com/api/getIncidencias').then((resp)=>{
   setIncidencias(resp.data.data)
   setisLoading(false)
 })
@@ -37,7 +37,7 @@ Axios.post('http://api-foodpartnerspatagonia.herokuapp.com/api/getIncidencias').
       <footer className='flex fixed right-5 bottom-5'>
       <Link href='/hallazgos/formhallazgo'>
         <a>
-        <button className='flex w-20 bg-blue-400 absolute active:bg-indigo-800 focus:outline-none text-white rounded-full right-5 py-5 text-4xl  sticky float-right justify-center'>+</button>
+        <button className='flex w-20 bg-blue-400  active:bg-indigo-800 focus:outline-none text-white rounded-full right-5 py-5 text-4xl  sticky float-right justify-center'>+</button>
         </a>
       </Link>
       </footer>

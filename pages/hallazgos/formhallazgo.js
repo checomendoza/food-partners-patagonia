@@ -93,7 +93,7 @@ const handleChange = () => (e) => {
                     <div className="flex flex-col justify-center items-center text-center text-xl text-green-600 my-20">
                         <CheckCircleIcon className='w-10' />
                         Se ha registrado el hallazgo
-                        <Link href='../listhallazgos'>
+                        <Link href='listhallazgos'>
                         <a>
                         <button type='button' className='w-11/12 p-4 bg-blue-400 text-white text-xl mt-7 mb-3 mx-3 rounded-xl focus:outline-none '>Ir al listado</button>
                         </a>

@@ -21,7 +21,7 @@ export default function Article(props){
                 <a className='flex flex-col py-2 px-2'>
                 <div className='flex flex-wrap items-center mb-3 w-full'>
                     <p className='text-gray-400 text-sm'>{props.item.created_at.slice(0, 10)}</p>
-                    <span className={`${bg_prioidad} text-sm text-gray-100 text-center px-5 py-1 rounded-full text-center ml-5`}>{props.item.prioridad}</span>
+                    <span className={`${bg_prioidad} text-sm text-gray-100 px-5 py-1 rounded-full text-center ml-5`}>{props.item.prioridad}</span>
                 </div>
                 <h1 className='font-bold'>{props.item.titulo}</h1>
                 <p>{props.item.detalle.slice(0,70)}...</p>
