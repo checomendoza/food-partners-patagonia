@@ -100,7 +100,7 @@ checkToken().then((resp)=>{
                 :
             <form acceptCharset="UTF-8" method="POST" onSubmit={handleSubmit}>
             <div className='flex flex-col items-center my-10'>
-                <input name='email' required type='email' placeholder='E-Mail' className='w-9/12 rounded-xl py-2 my-2 px-2 outline-none ring-4 ring focus:ring-blue-400' onChange={handleChange()} />
+                <input name='email' required type='email' placeholder='E-Mail' className='w-9/12 rounded-xl py-2 my-2 px-2 outline-none ring-4 focus:ring-blue-400' onChange={handleChange()} />
                 <input name='password' required type='password' placeholder='Password' className='w-9/12 rounded-xl py-2 my-2 px-2 outline-none ring-4 focus:ring-blue-400' onChange={handleChange()} />
                 <button type='submit' className='bg-blue-700 px-20 rounded-xl py-2 text-white my-3 focus:outline-none'>Aceptar</button>
             </div>

@@ -36,3 +36,14 @@ export async function NewUser(query){
         return error
     }
 }
+
+export async function getUsers(){
+    try{
+        const response = await Axios.post(ENDPOINT+'/getUsers')
+        return response.data
+    }
+    catch(error){
+        console.log(error)
+        return error
+    }
+}
