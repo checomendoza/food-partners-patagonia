@@ -5,7 +5,7 @@ import { getNovedades } from '../../api/Novedades';
 
 export default function DetalleHallazgo(){
     const router = useRouter()
-    const item=JSON.parse(router.query.item);
+    const item=JSON.parse(router.query.item ? router.query.item : null);
     const [novedades, setNotvedades]=useState(null)
     var bg_prioidad=''
     switch(item.prioridad.toLowerCase()){
