@@ -1,5 +1,5 @@
 import '../styles/globals.css'
-import 'tailwindcss/tailwind.css'
+// import 'tailwindcss/tailwind.css'
 
 import Head from 'next/head'
 
@@ -16,7 +16,7 @@ function MyApp({ Component, pageProps }) {
         />
         <meta name="description" content="Description" />
         <meta name="keywords" content="Keywords" />
-        <title>Next.js PWA Example</title>
+        <title>Food Partners Patagonia</title>
 
         <link rel="manifest" href="/manifest.json" />
         <link
