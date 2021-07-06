@@ -8,7 +8,8 @@ export default function DetalleHallazgo(){
     const item=JSON.parse(router.query.item ? router.query.item : null);
     const [novedades, setNotvedades]=useState(null)
     var bg_prioidad=''
-    switch(item.prioridad.toLowerCase()){
+   if(item) {
+   switch(item.prioridad.toLowerCase()){
         case 'baja':
             bg_prioidad='bg-green-400'
             break
@@ -20,6 +21,7 @@ export default function DetalleHallazgo(){
         break
 
     }
+}
 useEffect(()=>{
     getNovedades(item.id).then((respuesta)=>{
         setNotvedades(respuesta)
@@ -27,6 +29,7 @@ useEffect(()=>{
 }, [])
 
     return(
+        item &&
         <div className='w-screen justify-center relative'>
             <Header />
             <h1 className='text-xl text-center text-gray-700 font-regular mt-3'>{item.titulo}</h1>
@@ -71,5 +74,6 @@ useEffect(()=>{
             </div>
             <button type='button' className='w-11/12 p-4 bg-blue-400 text-white text-xl mt-7 mb-3 mx-3 rounded-xl focus:outline-none'>Cerrar Instancia</button>
         </div>
+        
     )
 }
