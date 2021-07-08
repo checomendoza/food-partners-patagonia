@@ -5,16 +5,8 @@ import {getAreas} from '../../api/Areas'
 import { DeleteUser, UpdateUser } from "../../api/Users";
 import Loader from "../../components/Loader";
 
-export default function DetallelUser(){
-const router =useRouter()
-const userEdit=JSON.parse(router.query.user ? router.query.user : {
-    'id': null,
-    'ayn': null,
-    'email': null,
-    'rol': null,
-    'id_area': null,
-    'password': null
-});
+export default function DetallelUser(props){
+const userEdit=JSON.parse(props.user ? props.user : null);
 const [areas, setAreas]=useState(null)
 const [isLoading, setIsLoading]=useState(false)
 const [query, setQuery] = useState({
@@ -94,3 +86,7 @@ useEffect(()=>{
         </div>
     )
 }
+
+DetallelUser.getInitialProps=({query})=>{
+    return query
+  }
