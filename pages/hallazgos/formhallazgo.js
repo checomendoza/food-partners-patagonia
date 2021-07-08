@@ -8,20 +8,21 @@ import Loader from '../../components/Loader'
 
 
 export default function FormHallazgo(){
-    const user=JSON.parse(localStorage.getItem('userData'))
     const FORM_ENDPOINT = "https://api-foodpartnerspatagonia.herokuapp.com/api/newIncidencia";
+    const [user, setUser] = useState(null)
     const [photo, setPhoto]=useState(null)
     const [formStatus, setFormStatus] = useState(null);
     const [query, setQuery] = useState({
         titulo: "",
         detalle: "",
         id_area: "",
-        id_user: user.id,
+        id_user: "",
         prioridad: "",
         foto: ""
     });
 
     useEffect(()=>{
+        setUser(JSON.parse(localStorage.getItem('userData')))
         const camera = document.querySelector('#camera');  
         camera && camera.addEventListener('change', function(e) {
             if(e.target.files.length !== 0){
