@@ -3,9 +3,9 @@ import Header from '../../components/Header';
 import { useState, useEffect } from 'react';
 import { getNovedades } from '../../api/Novedades';
 
-export default function DetalleHallazgo(){
+export default function DetalleHallazgo(props){
     const router = useRouter()
-    const item=JSON.parse(router.query.item ? router.query.item : null);
+    const item=JSON.parse(props.item ? props.item : null);
     const [novedades, setNotvedades]=useState(null)
     var bg_prioidad=''
    if(item) {
@@ -77,3 +77,6 @@ useEffect(()=>{
         
     )
 }
+DetalleHallazgo.getInitialProps=({query})=>{
+    return query
+  }

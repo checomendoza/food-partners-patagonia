@@ -7,6 +7,7 @@ import Loader from "../../components/Loader";
 
 export default function DetallelUser(props){
 const userEdit=JSON.parse(props.user ? props.user : null);
+const router = useRouter()
 const [areas, setAreas]=useState(null)
 const [isLoading, setIsLoading]=useState(false)
 const [query, setQuery] = useState({

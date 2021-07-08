@@ -13,6 +13,7 @@ const [incidencias, setIncidencias]=useState(null)
 const [isLoading, setisLoading]=useState(true)
 useEffect(()=>{
 Axios.post('https://api-foodpartnerspatagonia.herokuapp.com/api/getIncidencias').then((resp)=>{
+  console.log('RESPUETA',resp)
   setIncidencias(resp.data.data)
   setisLoading(false)
 })
