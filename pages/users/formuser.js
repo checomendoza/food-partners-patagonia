@@ -20,7 +20,7 @@ export default function FormUser(){
     const handleChange = (type) => (e) => {
         const name = e.target.name;
         const value = e.target.value;
-        if(type='rol'){
+        if(type=='rol'){
             setQuery((prevState) => ({
                 ...prevState,
                 id_area: null

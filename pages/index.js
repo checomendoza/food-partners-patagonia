@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react'
-import { ExclamationCircleIcon } from '@heroicons/react/outline'
+import { ExclamationCircleIcon, CloudDownloadIcon} from '@heroicons/react/outline'
 import {useRouter} from 'next/router'
 import {checkToken} from '../api/Token'
 import {LoginApi} from '../api/Users'
@@ -96,8 +96,9 @@ checkToken().then((resp)=>{
             <img src='/img/logo.png' width={250} className='self-center'/>
             </div>
             {
-                formStatus ? <Loader msg='Cargando...' />
+                formStatus ? <Loader msg='Cargando...' color='white' />
                 :
+                
             <form acceptCharset="UTF-8" method="POST" onSubmit={handleSubmit}>
             <div className='flex flex-col items-center my-10'>
                 <input name='email' required type='email' placeholder='E-Mail' className='w-9/12 rounded-xl py-2 my-2 px-2 outline-none ring-4 focus:ring-blue-400' onChange={handleChange()} />
@@ -114,8 +115,11 @@ checkToken().then((resp)=>{
                 </div>
             }
             {showInstall &&
-            <div className='p-3 mx-2 rounded-sm text-white text-center'>
-                <button className='bg-indigo-900 rounded-xl p-5 w-80 text-xl' onClick={()=>prompInstall()}>Instalar App</button>
+            <div className='flex justify-center p-3 mx-2 rounded-sm text-white text-center'>
+                <button className='bg-blue-700 rounded-2xl px-5 py-3 w-80 text-xl flex flex-col align-center items-center' onClick={()=>prompInstall()}>
+                    <CloudDownloadIcon className='w-12' />
+                    Instalar App
+                </button>
             </div>
             }
         </div>

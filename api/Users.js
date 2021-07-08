@@ -47,3 +47,34 @@ export async function getUsers(){
         return error
     }
 }
+
+export async function UpdateUser(query){
+    try{
+        const response = await Axios.post(ENDPOINT+'/updateUser',{
+            'id': query.id,
+            'ayn': query.ayn,
+            'email': query.email,
+            'password': query.password,
+            'rol': query.rol,
+            'id_area': query.id_area
+        },
+        {headers: {'Authorization': `Bearer ${localStorage.getItem('tokenSession')}`}}
+        )
+        return response
+    }
+    catch(error){
+        console.log(error)
+        return error
+    }
+}
+
+export async function DeleteUser(id){
+    try{
+        const response = await Axios.post(ENDPOINT+'/inactiveUser', {'id': id}, {headers:{'Authorization': `Bearer ${localStorage.getItem('tokenSession')}`}})
+        return response
+    }
+    catch(error){
+        console.log(error)
+        return error
+    }
+}

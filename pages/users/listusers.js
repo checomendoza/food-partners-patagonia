@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Header from "../../components/Header";
 import Link from 'next/link'
 import { getUsers } from "../../api/Users";
-import {UserIcon} from '@heroicons/react/solid'
+import {UserIcon} from '@heroicons/react/outline'
 
 export default function ListUsers(){
 const [users, setUsers]=useState(null)
@@ -19,16 +19,18 @@ useEffect(()=>{
             <p className='font-light text-gray-700 text-md px-3 text-center'>Listado de usuarios del sistema sus roles y area al que pertenece</p>
             <div className='flex flex-col mt-5'>
                 {users && users.map((user)=>
-                <div key={user.id} className='flex flex-col items-center p-5 border-b border-gray-300 m-1'>
-                    <div className='flex w-full'>
-                    <UserIcon className='w-10 text-gray-600'/>
-                    <p className='text-2xl text-gray-700 mx-7'>{user.ayn}</p>
+                <Link key={user.id} href={{pathname: '../users/detalleuser', query: {user: JSON.stringify(user)}}}>
+                    <div className='flex flex-col items-center p-3 border-b border-gray-300 m-1'>
+                            <div className='flex w-full'>
+                                <UserIcon className='w-10 text-blue-400'/>
+                                <p className='text-lg text-gray-900 mx-5 justify-center'>{user.ayn}</p>
+                            </div>
+                            <div className='flex -mt-2  w-full pl-14'>
+                                <p className='text-gray-500 mx-1 text-sm'>{user.rol} </p>
+                                <p className='text-gray-500 text-sm'>{user.nombre && '| '+user.nombre}</p>
+                            </div>
                     </div>
-                    <div className='flex'>
-                    <p className='text-gray-500 mx-1'>{user.rol} </p>
-                    <p className='text-gray-500'>{user.nombre && '| '+user.nombre}</p>
-                    </div>
-                </div>
+                </Link>
                 )}
             </div>
             <footer className='flex fixed right-5 bottom-5'>
