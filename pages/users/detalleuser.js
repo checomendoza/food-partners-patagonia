@@ -7,7 +7,14 @@ import Loader from "../../components/Loader";
 
 export default function DetallelUser(){
 const router =useRouter()
-const userEdit=JSON.parse(router.query.user ? router.query.user : null);
+const userEdit=JSON.parse(router.query.user ? router.query.user : {
+    id: null,
+    ayn: null,
+    email: null,
+    rol: null,
+    id_area: null,
+    password: null
+});
 const [areas, setAreas]=useState(null)
 const [isLoading, setIsLoading]=useState(false)
 const [query, setQuery] = useState({
@@ -15,7 +22,7 @@ const [query, setQuery] = useState({
     ayn: userEdit.ayn,
     email: userEdit.email,
     rol: userEdit.rol,
-    id_area: userEdit.id_area ? userEdit.id_area : 'nada',
+    id_area: userEdit.id_area ? userEdit.id_area : null,
     password: undefined
 });
 const handleChange = (type) => (e) => {
