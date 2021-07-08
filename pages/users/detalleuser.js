@@ -8,12 +8,12 @@ import Loader from "../../components/Loader";
 export default function DetallelUser(){
 const router =useRouter()
 const userEdit=JSON.parse(router.query.user ? router.query.user : {
-    id: null,
-    ayn: null,
-    email: null,
-    rol: null,
-    id_area: null,
-    password: null
+    'id': null,
+    'ayn': null,
+    'email': null,
+    'rol': null,
+    'id_area': null,
+    'password': null
 });
 const [areas, setAreas]=useState(null)
 const [isLoading, setIsLoading]=useState(false)
