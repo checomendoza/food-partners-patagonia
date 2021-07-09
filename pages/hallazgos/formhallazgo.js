@@ -5,6 +5,7 @@ import Axios from 'axios'
 import Link from 'next/link'
 import imageCompression from 'browser-image-compression';
 import Loader from '../../components/Loader'
+import { getAreas } from "../../api/Areas";
 
 
 export default function FormHallazgo(){
@@ -12,6 +13,7 @@ export default function FormHallazgo(){
     const [user, setUser] = useState(null)
     const [photo, setPhoto]=useState(null)
     const [formStatus, setFormStatus] = useState(null);
+    const [areas, setAreas]=useState(null)
     const [query, setQuery] = useState({
         titulo: "",
         detalle: "",
@@ -23,6 +25,9 @@ export default function FormHallazgo(){
 
     useEffect(()=>{
         setUser(JSON.parse(localStorage.getItem('userData')))
+        getAreas().then((resp)=>{
+            setAreas(resp.data)
+        })
         const camera = document.querySelector('#camera');  
         camera && camera.addEventListener('change', function(e) {
             if(e.target.files.length !== 0){
@@ -89,7 +94,7 @@ const handleChange = () => (e) => {
     return(
         <div className=' w-screen h-screen justify-center relative'>
             <Header />
-            <h1 className='text-2xl font-bold text-gray-700 text-center pt-3 pb-1'>Nuevo Hallazgo</h1>
+            <h1 className='text-2xl font-bold text-gray-700 text-center pt-3 pb-1'>Nuevo Hallazgo {user && user.id}</h1>
             <p className='font-light text-gray-700 text-md px-3 text-center'>Especifique un nombre y describa el hallazgo detectado adjuntando una fotografía del mismo</p>
             {formStatus=='complete' && 
                     <div className="flex flex-col justify-center items-center text-center text-xl text-green-600 my-20">
@@ -114,10 +119,7 @@ const handleChange = () => (e) => {
                 <svg className="w-2 h-5 absolute top-0 right-0 m-4 pointer-events-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 412 232"><path d="M206 171.144L42.678 7.822c-9.763-9.763-25.592-9.763-35.355 0-9.763 9.764-9.763 25.592 0 35.355l181 181c4.88 4.882 11.279 7.323 17.677 7.323s12.796-2.441 17.678-7.322l181-181c9.763-9.764 9.763-25.592 0-35.355-9.763-9.763-25.592-9.763-35.355 0L206 171.144z" fill="#648299" fillRule="nonzero"/></svg>
                 <select name='id_area' required className="border border-gray-200 rounded-full text-gray-600 h-10 pl-5 pr-10 my-2 w-full bg-white focus:ring-2 focus:ring-blue-300 focus:outline-none appearance-none" onChange={handleChange()}>
                     <option disabled defaultValue hidden>Seleccione el área...</option>
-                    <option value='1'>Mantimiento</option>
-                    <option value='2'>Proveedores</option>
-                    <option value='3'>Limpieza</option>
-                    <option value='4'>Personal</option>
+                    {areas && areas.map((area)=><option key={area.id} value={area.id}>{area.nombre}</option>)}
                 </select>
             </div>
             <div className='w-12/12 my-5 mx-3'>
