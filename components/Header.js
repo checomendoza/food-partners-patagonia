@@ -1,10 +1,11 @@
 import {HomeIcon, LogoutIcon, MenuIcon, ClipboardListIcon, FlagIcon, UsersIcon, XIcon, DocumentReportIcon, UserCircleIcon } from '@heroicons/react/solid'
 import Link from 'next/link'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import {useRouter} from 'next/router'
 
 export default function Header(){
     const [isOpenMenu, setIsOpenMenu]=useState(false)
+    const [user, setUser]=useState(null)
     const router = useRouter()
     const logout = () =>{
         setIsOpenMenu()
@@ -13,6 +14,11 @@ export default function Header(){
             router.push('/')
         }
     }
+
+    useEffect(()=>{
+        setUser(JSON.parse(localStorage.getItem('userData')))
+        console.log('USER', user)
+    },[])
     return(
         <div className='sticky top-0 z-50'>
         <div className='flex items-center w-full bg-blue-500 py-3 '>
@@ -46,7 +52,9 @@ export default function Header(){
                         </li>
                         </a>
                     </Link>
-                   <Link href='/areas/listareas'>
+                    {user && user.rol==='Admin' &&
+                    <>
+                    <Link href='/areas/listareas'>
                         <a onClick={()=>setIsOpenMenu(false)}>
                         <li className='flex items-center text-white text-xl mb-7 font-light'>
                             <FlagIcon className='w-7 mr-2'/>
@@ -54,6 +62,7 @@ export default function Header(){
                         </li>
                         </a>
                    </Link>
+                    
                     <Link href='/users/listusers'>
                         <a onClick={()=>setIsOpenMenu(false)}>
                         <li className='flex items-center text-white text-xl mb-7 font-light'>
@@ -70,6 +79,8 @@ export default function Header(){
                         </li>
                         </a>
                     </Link>
+                    </>
+                    }
                     <Link href='#'>
                         <a onClick={()=>setIsOpenMenu(false)}>
                         <li className='flex items-center text-white text-xl mb-7 font-light'>

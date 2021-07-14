@@ -12,9 +12,15 @@ export default function ListHallazgos() {
 const [incidencias, setIncidencias]=useState(null)
 const [isLoading, setisLoading]=useState(true)
 useEffect(()=>{
-Axios.post('https://api-foodpartnerspatagonia.herokuapp.com/api/getIncidencias').then((resp)=>{
-  console.log('RESPUETA',resp)
-  setIncidencias(resp.data.data)
+  const user=JSON.parse(localStorage.getItem('userData'))
+  var parametros={}
+if(user.rol=='Operador'){
+parametros={
+      id_area: user.id_area
+    }
+}
+Axios.post('https://api-foodpartnerspatagonia.herokuapp.com/api/getIncidencias',parametros).then((resp)=>{
+  setIncidencias(resp.data.data.reverse())
   setisLoading(false)
 })
 }, [])
