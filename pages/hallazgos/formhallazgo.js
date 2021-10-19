@@ -56,7 +56,6 @@ const handleChange = () => (e) => {
     const name = e.target.name;
     const value = e.target.value;
     const user = JSON.parse(localStorage.getItem('userData'))
-    console.log('ID USUSARIO', user.id)
     setQuery((prevState) => ({
         ...prevState,
         [name]: value,
@@ -148,7 +147,7 @@ const handleChange = () => (e) => {
                 :
                 <img height={200} width={300} src={photo} className='rounded-xl' />
                  }
-             <input required name='foto' type="file" accept="image/*" capture="environment" id="camera" className='h-0 w-0' onChange={handleFileChange()}/>
+             <input required name='foto' type="file" accept="image/*" id="camera" className='h-0 w-0' onChange={handleFileChange()}/>
              </label>
           
                     <button type='submit' className='w-11/12 p-4 bg-blue-400 text-white text-xl mt-7 mb-3 mx-3 rounded-xl focus:outline-none '>Aceptar</button>
