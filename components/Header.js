@@ -29,6 +29,7 @@ export default function Header() {
 
 	useEffect(() => {
 		setUser(JSON.parse(localStorage.getItem("userData")))
+		console.log("USER====", JSON.parse(localStorage.getItem("userData")))
 	}, [])
 	return (
 		<div className="sticky top-0 z-50">
@@ -36,8 +37,10 @@ export default function Header() {
 				<button className="focus:outline-none" onClick={() => setIsOpenMenu(isOpenMenu ? false : true)}>
 					{!isOpenMenu ? <MenuIcon className="w-8 text-white mx-3" /> : <XIcon className="w-8 text-white mx-3" />}
 				</button>
+				<div>
 				<img src="/img/logo.png" width={250} className="self-center mx-7" />
-				{/* <h1 className='text-xl py-2 text-center text-gray-300'>Sistema de Control de Incidencias</h1> */}
+				<p className='text-md text-left px-7 text-indigo-100'>{user?.ayn}</p>
+				</div>
 			</div>
 			<div
 				className={`flex bg-blue-500 h-screen absolute w-56 transform transition ease-in-out duration-500 sm:duration-700  ${

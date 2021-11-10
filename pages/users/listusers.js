@@ -42,7 +42,7 @@ export default function ListUsers() {
 			<footer className="flex fixed right-5 bottom-5">
 				<Link href="formuser">
 					<a>
-						<button className="flex w-20 bg-blue-400 active:bg-indigo-800 focus:outline-none text-white rounded-full right-5 py-5 text-4xl  sticky float-right justify-center">
+					<button className="flex w-16 bg-blue-400  active:bg-indigo-800 focus:outline-none text-white rounded-full py-3 text-4xl  sticky float-right justify-center">
 							+
 						</button>
 					</a>
