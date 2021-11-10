@@ -11,7 +11,6 @@ export async function LoginApi(query){
         return response
     }
     catch (error){
-        console.log('======error', error)
         return error
     }
 

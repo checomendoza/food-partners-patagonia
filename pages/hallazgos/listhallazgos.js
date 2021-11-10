@@ -11,6 +11,7 @@ import Axios from "axios"
 
 export default function ListHallazgos() {
 	const [incidencias, setIncidencias] = useState(null)
+	const [incidenciasApi, setIncidenciasApi] = useState(null)
 	const [isLoading, setisLoading] = useState(true)
 	useEffect(() => {
 		const user = JSON.parse(localStorage.getItem("userData"))
@@ -21,17 +22,37 @@ export default function ListHallazgos() {
 			}
 		}
 		Axios.post("https://api-foodpartnerspatagonia.herokuapp.com/api/getIncidencias", parametros).then((resp) => {
-			console.log("respuesta api======", resp)
 			setIncidencias(resp.data.data)
+			setIncidenciasApi(resp.data.data)
 			setisLoading(false)
 		})
 	}, [])
-
+const handleFilter = (type)=>{
+	type=='TODAS' ? setIncidencias(incidenciasApi) : setIncidencias(incidenciasApi.filter(item=>item.prioridad==type))
+}
 	return (
-		<div className="w-screen justify-center relative">
+		<div className="w-full justify-center relative">
 			<Header />
 			<h1 className="text-2xl font-bold text-gray-700 text-center pt-3 pb-1">Listado de Hallazgos</h1>
+
 			<main className="flex flex-col items-center py-3 w-full">
+				<div className="pb-3">
+					<h3>Filtros</h3>
+					<div className='flex'>
+						<div className="cursor-pointer bg-transparent border border-blue-600 py-1 px-4 mx-2 md:py-2 md:px-5 rounded-lg hover:bg-blue-600 hover:text-white text-blue-600" onClick={() =>handleFilter('TODAS')}>
+							Todas
+						</div>
+						<div className="cursor-pointer bg-transparent border border-red-500 py-1 px-4 mx-2 md:py-2 md:px-5 rounded-lg hover:bg-red-500 hover:text-white text-red-500" onClick={() =>handleFilter('ALTA')}>
+							Alta
+						</div>
+						<div className="cursor-pointer bg-transparent border border-yellow-500 py-1 px-4 mx-2 md:py-2 md:px-5 rounded-lg hover:bg-yellow-500 hover:text-white text-yellow-500" onClick={() =>handleFilter('MEDIA')}>
+							Media
+						</div>
+						<div className="cursor-pointer bg-transparent border border-green-500 py-1 px-4 mx-2 md:py-2 md:px-5 rounded-lg hover:bg-green-500 hover:text-white text-green-500" onClick={() =>handleFilter('BAJA')}>
+							Baja
+						</div>
+					</div>
+				</div>
 				{isLoading && <Loader msg="Cargando..." color="blue-400" />}
 				{incidencias && incidencias.length == 0 && (
 					<>

@@ -90,7 +90,7 @@ export default function Index() {
 			})
 	}
 	return (
-		<div className="w-screen h-screen flex flex-col items-center bg-blue-500">
+		<div className="w-full h-screen flex flex-col items-center bg-blue-500">
 			<div className="flex justify-center items-center pt-40">
 				<img src="/img/logo.png" width={250} className="self-center" />
 			</div>

@@ -23,7 +23,6 @@ export default function FormArea() {
 		e.preventDefault()
 		setFormStatus(true)
 		newArea(query.nombre).then((resp) => {
-			console.log("RESPUESTA", resp)
 			setFormStatus(false)
 		})
 	}
