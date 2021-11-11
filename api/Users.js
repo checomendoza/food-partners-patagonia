@@ -4,7 +4,6 @@ export async function LoginApi(query){
     try{
         const response = await Axios.post(ENDPOINT+'/login', query)
         if(response.data.success==1){
-            console.log('DATA USUARIO', response.data.data[0])
             localStorage.setItem('tokenSession', response.data.token)
             localStorage.setItem('userData', JSON.stringify(response.data.data[0]))
         }
@@ -48,6 +47,7 @@ export async function getUsers(){
 }
 
 export async function UpdateUser(query){
+    console.log('QUERY UPDATE', query)
     try{
         const response = await Axios.post(ENDPOINT+'/updateUser',{
             'id': query.id,

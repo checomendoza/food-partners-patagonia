@@ -29,7 +29,6 @@ export default function Header() {
 
 	useEffect(() => {
 		setUser(JSON.parse(localStorage.getItem("userData")))
-		console.log("USER====", JSON.parse(localStorage.getItem("userData")))
 	}, [])
 	return (
 		<div className="sticky top-0 z-50">
@@ -94,7 +93,7 @@ export default function Header() {
 								</Link>
 							</>
 						)}
-						<Link href="#">
+						<Link href="/micuenta">
 							<a onClick={() => setIsOpenMenu(false)}>
 								<li className="flex items-center text-white text-xl mb-7 font-light">
 									<UserCircleIcon className="w-7 mr-2" />
