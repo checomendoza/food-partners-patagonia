@@ -44,7 +44,7 @@ export default function Index(){
     return(
 		<div className="w-full">
             {alertOK && <Modal title='Datos Actualizados' msg='Se han actualizados sus datos correctamente' route='/dashboard'/>}
-            {alertError && <Modal title='Error' msg='Las contraseñas no coinciden' close={setAlertError}/>}
+            {alertError && <Modal title='Error' msg='Las contraseñas no coinciden' accept={setAlertError}/>}
             <Header />
             <h1 className="text-2xl font-bold text-gray-700 text-center pt-3 pb-1">Mi Cuenta</h1>
             <p className='text-center px-3 text-md'>Modifique los datos de su cuenta. <br/>Recuerde si NO desa cambiar la contraseña, debe dejar en blanco</p>

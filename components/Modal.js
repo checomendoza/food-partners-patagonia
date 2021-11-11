@@ -1,14 +1,17 @@
 import { useRouter } from "next/router"
 
-export default function Modal({title, msg, route, close}){
+export default function Modal({title, msg, route, accept, cancel}){
     const router = useRouter();
     const handleAction =()=>{
         if(route){
         router.push(route);
         }
-        if(close){
-            close();
+        if(accept){
+            accept();
         }
+    }
+    const handleCancel =()=>{
+        cancel()
     }
     return(
         <div className="h-screen w-screen z-50 bg-gray-900 absolute bg-opacity-80 flex flex-col items-center justify-items-center justify-center">
@@ -19,9 +22,15 @@ export default function Modal({title, msg, route, close}){
                 <div className="py-3 px-1">
                     <p className="text-white text-md">{msg}</p>
                 </div>
-                <button className="bg-white w-10/12 px-5 py-3 rounded-3xl mt-7 bottom-0 self-center cursor-pointer" 
+                <div className="flex w-full justify-around">
+                <button className="flex bg-blue-700 rounded-2xl py-2 text-white px-10 mx-1 focus:outline-none" 
                 onClick={()=>handleAction()}>Aceptar</button>
+                {cancel && <button className="flex bg-gray-300 rounded-2xl py-2 text-blue-700 px-10 mx-1 focus:outline-none" 
+                onClick={()=>handleCancel()}>Cancelar</button>}
+                </div>
             </div>
+                
+            
         </div>
     )
 }

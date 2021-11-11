@@ -14,17 +14,17 @@ import {
 import Link from "next/link"
 import { useEffect, useState } from "react"
 import { useRouter } from "next/router"
+import Modal from "./Modal"
 
 export default function Header() {
 	const [isOpenMenu, setIsOpenMenu] = useState(false)
 	const [user, setUser] = useState(null)
+	const [alert, setAlert] = useState(false)
 	const router = useRouter()
 	const logout = () => {
 		setIsOpenMenu()
-		if (confirm("Desea cerrar su sesion?")) {
 			localStorage.clear()
 			router.push("/")
-		}
 	}
 
 	useEffect(() => {
@@ -32,6 +32,7 @@ export default function Header() {
 	}, [])
 	return (
 		<div className="sticky top-0 z-40">
+			{alert && <Modal title='Cerrar Sesion' msg='Esta seguro que desa cerrar sesion?' accept={logout} cancel={setAlert}/>}
 			<div className="flex items-center w-full bg-blue-500 py-3 ">
 				<button className="focus:outline-none" onClick={() => setIsOpenMenu(isOpenMenu ? false : true)}>
 					{!isOpenMenu ? <MenuIcon className="w-8 text-white mx-3" /> : <XIcon className="w-8 text-white mx-3" />}
@@ -102,7 +103,7 @@ export default function Header() {
 							</a>
 						</Link>
 						<Link href="#">
-							<a onClick={() => logout()}>
+							<a onClick={() => {setIsOpenMenu(false), setAlert(true)}}>
 								<li className="flex items-center text-white text-xl mb-7 font-light">
 									<LogoutIcon className="w-7 mr-2" />
 									<p>Salir</p>
