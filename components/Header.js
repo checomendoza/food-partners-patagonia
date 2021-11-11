@@ -31,7 +31,7 @@ export default function Header() {
 		setUser(JSON.parse(localStorage.getItem("userData")))
 	}, [])
 	return (
-		<div className="sticky top-0 z-50">
+		<div className="sticky top-0 z-40">
 			<div className="flex items-center w-full bg-blue-500 py-3 ">
 				<button className="focus:outline-none" onClick={() => setIsOpenMenu(isOpenMenu ? false : true)}>
 					{!isOpenMenu ? <MenuIcon className="w-8 text-white mx-3" /> : <XIcon className="w-8 text-white mx-3" />}

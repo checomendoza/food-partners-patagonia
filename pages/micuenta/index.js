@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react"
-import { useRouter } from "next/router"
 import Header from "../../components/Header";
 import Loader from "../../components/Loader";
 import { UpdateUser } from "../../api/Users";
+import Modal from "../../components/Modal";
 
 export default function Index(){
     const [isLoading,setIsLoading] = useState(true);
+    const [alertOK,setAlertOK] = useState(false);
+    const [alertError,setAlertError] = useState(false);
     const [userEdit, setUserEdit] = useState(
         {
             'ayn': null,
@@ -15,21 +17,19 @@ export default function Index(){
             'rol': null,
             'id_area': null,
         });
-    const router = useRouter();
     const handleSubmit =()=>{
         if (userEdit.password === userEdit.password2 ){
             setIsLoading(true)
                     UpdateUser(userEdit).then(() => {
                         userEdit.password = null;
                         userEdit.password2 = null;
-                        setIsLoading(false)
                         localStorage.setItem('userData', JSON.stringify(userEdit))
-                        alert('Datos Actualizados')
-                        router.push('/dashboard')
+                        setIsLoading(false)
+                        setAlertOK(true)
                     })
         }
         else{
-            alert("Las contraseñas no coinciden");
+            setAlertError(true)
         }
        
         
@@ -48,6 +48,8 @@ export default function Index(){
     },[])
     return(
 		<div className="w-full">
+            {alertOK && <Modal title='Datos Actualizados' msg='Se han actualizados sus datos correctamente' route='/dashboard'/>}
+            {alertError && <Modal title='Error' msg='Las contraseñas no coinciden' close={setAlertError}/>}
             <Header />
             <h1 className="text-2xl font-bold text-gray-700 text-center pt-3 pb-1">Mi Cuenta</h1>
             <p className='text-center px-3 text-md'>Modifique los datos de su cuenta. <br/>Recuerde si NO desa cambiar la contraseña, debe dejar en blanco</p>
