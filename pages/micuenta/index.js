@@ -8,21 +8,13 @@ export default function Index(){
     const [isLoading,setIsLoading] = useState(true);
     const [alertOK,setAlertOK] = useState(false);
     const [alertError,setAlertError] = useState(false);
-    const [userEdit, setUserEdit] = useState(
-        {
-            'ayn': null,
-            'email': null,
-            'password': null,
-            'password2': null,
-            'rol': null,
-            'id_area': null,
-        });
+    const [userEdit, setUserEdit] = useState({});
     const handleSubmit =()=>{
         if (userEdit.password === userEdit.password2 ){
             setIsLoading(true)
                     UpdateUser(userEdit).then(() => {
-                        userEdit.password = null;
-                        userEdit.password2 = null;
+                        delete userEdit.password;
+                        delete userEdit.password2;
                         localStorage.setItem('userData', JSON.stringify(userEdit))
                         setIsLoading(false)
                         setAlertOK(true)
@@ -43,7 +35,10 @@ export default function Index(){
 		}))
     }
     useEffect(() => {
-        setUserEdit(JSON.parse(localStorage.getItem("userData")))
+        const userData = JSON.parse(localStorage.getItem('userData'));
+        userData.password = '';  
+        userData.password2 = '';  
+        setUserEdit(userData)
         setIsLoading(false)
     },[])
     return(

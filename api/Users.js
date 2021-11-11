@@ -47,7 +47,6 @@ export async function getUsers(){
 }
 
 export async function UpdateUser(query){
-    console.log('QUERY UPDATE', query)
     try{
         const response = await Axios.post(ENDPOINT+'/updateUser',{
             'id': query.id,
