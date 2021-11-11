@@ -5,10 +5,8 @@ import {
 	LogoutIcon,
 	MenuIcon,
 	ClipboardListIcon,
-	FlagIcon,
-	UsersIcon,
+
 	XIcon,
-	DocumentReportIcon,
 	UserCircleIcon,
 } from "@heroicons/react/solid"
 import Link from "next/link"
@@ -26,10 +24,10 @@ export default function Header() {
 			localStorage.clear()
 			router.push("/")
 	}
-
 	useEffect(() => {
 		setUser(JSON.parse(localStorage.getItem("userData")))
-	}, [])
+	},[])
+
 	return (
 		<div className="sticky top-0 z-40">
 			{alert && <Modal title='Cerrar Sesion' msg='Esta seguro que desa cerrar sesion?' accept={logout} cancel={setAlert}/>}
